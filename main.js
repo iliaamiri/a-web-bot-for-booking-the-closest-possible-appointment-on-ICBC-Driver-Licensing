@@ -5,6 +5,8 @@ const { EOL } = require('os');
 const { randomIntFromInterval, sleep } = require('./helpers');
 
 const {
+    seleniumServer,
+    seleniumServerPort,
     lastName,
     driverLicenseNumber,
     keyWord,
@@ -47,7 +49,7 @@ let lastDateText;
         console.log("Attempting to connect to selenium server...");
         let driver = await new Builder()
             .forBrowser('firefox')
-            .usingServer('http://localhost:4444/wd/hub')
+            .usingServer(`http://${seleniumServer}:${seleniumServerPort}/wd/hub`)
             .build();
 
         let buttonFoundLocation = await initiate(driver);
