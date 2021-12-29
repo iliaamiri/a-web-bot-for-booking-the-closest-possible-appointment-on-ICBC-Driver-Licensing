@@ -41,6 +41,8 @@ let lastDateText;
             " __)  | /--\\ | \\ |  \n" +
             "                    ");
         console.log("------------- Configs ---------------");
+        console.log(`Selenium Server: ${seleniumServer}`);
+        console.log(`Selenium Server Port: ${seleniumServerPort}`);
         console.log(`Last Name: ${lastName}`);
         console.log(`Driver License Number: ${driverLicenseNumber}`);
         console.log(`Keyword: ******${EOL}`);
