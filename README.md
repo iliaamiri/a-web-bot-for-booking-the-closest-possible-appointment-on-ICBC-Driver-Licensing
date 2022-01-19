@@ -10,4 +10,7 @@ node main
 ```
 
 ## Rename the config-sample.js to config.js 
+
+## Setup and run the Selenium server and give the right port number and server ip in config.js
+
 *!!! don't forget to keep that config.js file safe from any accesses !!!*
