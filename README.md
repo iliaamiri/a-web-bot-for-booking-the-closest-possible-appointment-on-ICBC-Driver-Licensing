@@ -13,4 +13,6 @@ node main
 
 ## Setup and run the Selenium server and give the right port number and server ip in config.js
 
+### You may refer to this docker container I made and instantly setup the selenium: https://github.com/iliaamiri/selenium-on-Linux-setup-dependencies
+
 *!!! don't forget to keep that config.js file safe from any accesses !!!*
