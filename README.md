@@ -1,4 +1,4 @@
-# a-web-bot-for-booking-the-closest-possible-appointment-on-ICBC-Driver-Licensing
+# A Web Bot for Booking the Closest Possible Appointment on ICBC Driver Licensing
 God Bless Selenium and Node.js
 
 ## Setup
