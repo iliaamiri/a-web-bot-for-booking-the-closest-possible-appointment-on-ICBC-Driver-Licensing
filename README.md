@@ -17,5 +17,10 @@ node main
 
 *!!! don't forget to keep that config.js file safe from any accesses !!!*
 
+## For it to automatically reads your email inbox, you should enable the IMAP protocol and turn on the "allow for less-secure apps" in your setting.
+For Gmail:
+* https://support.google.com/accounts/answer/6010255?hl=en
+* https://support.google.com/mail/answer/7126229?hl=en#zippy=
+
 ### How does Success Message look like:
 ![success message](/git_img/success-message.png)
