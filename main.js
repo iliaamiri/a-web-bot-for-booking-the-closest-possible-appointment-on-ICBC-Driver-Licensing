@@ -10,7 +10,11 @@ const {
     lastName,
     driverLicenseNumber,
     keyWord,
-    intervalBetweenEachRefresh
+    intervalBetweenEachRefresh,
+    approvementLogic,
+    citySpelledOut,
+    cityFullName,
+    branchStreetName
 } = require('./config');
 
 const monthsList = {
@@ -196,7 +200,6 @@ async function initiate(driver) {
             // Entered the map
             let inputLocationName = await driver.findElement(By.id('mat-input-3'));
 
-            let citySpelledOut = ["Surr", "ey", ", BC"];
             let currentSpellIndex = 0;
             let inputLocationName_SuggestedLocationToConfirm;
             const tryFindingTheSuggestion = async () => {
@@ -209,7 +212,7 @@ async function initiate(driver) {
                 await sleep(1500);
 
                 try {
-                    inputLocationName_SuggestedLocationToConfirm = await driver.findElement(By.xpath("//span[contains(text(),'Surrey')]"));
+                    inputLocationName_SuggestedLocationToConfirm = await driver.findElement(By.xpath(`//span[contains(text(),'${cityFullName}')]`));
                 } catch(err) {
                     currentSpellIndex++;
                     await tryFindingTheSuggestion();
@@ -227,7 +230,7 @@ async function initiate(driver) {
 
             await sleep(2000)
 
-            let buttonFoundLocation = await driver.findElement(By.xpath("//div[contains(text(),'19950 Willowbrook Dr j7')]"))
+            let buttonFoundLocation = await driver.findElement(By.xpath(`//div[contains(text(),'${branchStreetName}')]`))
 
             console.log("Initiated successfully.")
             console.log(" ___                  ___  __       ___    __           __   ___  __          __  \n" +
@@ -262,7 +265,8 @@ async function isAppointmentFound(driver, buttonFoundLocation) {
 
     let date = getDateFromText(dateText);
 
-    if (date.getMonth() < 2 || dateText.includes("February") || dateText.includes("January")) { // if the month was either january or february
+    const isApproved = approvementLogic(date, dateText);
+    if (isApproved) {
         console.log(`Successful!!! ----- ${dateText} -----`);
         return date;
     }
