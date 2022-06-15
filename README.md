@@ -20,9 +20,6 @@ Replace your ICBC credentials with the placeholders, and for automating the whol
 Go to `src/approvementLogic.js` and use any of these 4 syntaxes to filter out the dates you want to book your appointment on: 
 ![image](https://user-images.githubusercontent.com/37903573/173935970-b719f7e3-bbfc-4927-a5ba-c589d6381002.png)
 
-`dateText` is the date text of the latest result, which is being evaluated.  
-`date` is a Date instance based of the `dateText`
-
 ## For it to automatically read your email inbox, enable the IMAP protocol and turn on the "allow for less-secure apps" in your settings.
 For Gmail:
 * https://support.google.com/accounts/answer/6010255?hl=en
