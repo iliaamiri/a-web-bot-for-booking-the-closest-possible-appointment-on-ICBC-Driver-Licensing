@@ -14,7 +14,8 @@ const {
     approvementLogic,
     citySpelledOut,
     cityFullName,
-    branchStreetName
+    branchStreetName,
+    seleniumForBrowser
 } = require('./config');
 
 const monthsList = {
@@ -54,7 +55,7 @@ let lastDateText;
         console.log("-------------------------------------");
         console.log("Attempting to connect to selenium server...");
         let driver = await new Builder()
-            .forBrowser('firefox')
+            .forBrowser(seleniumForBrowser)
             .usingServer(`http://${seleniumServer}:${seleniumServerPort}/wd/hub`)
             .build();
 

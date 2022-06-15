@@ -2,6 +2,7 @@
 
 const seleniumServer = "localhost";
 const seleniumServerPort = 4444;
+const seleniumForBrowser = "firefox";
 
 // Your Credentials
 const lastName = "YOUR LAST NAME";
@@ -44,5 +45,6 @@ module.exports = {
     approvementLogic,
     citySpelledOut,
     cityFullName,
-    branchStreetName
+    branchStreetName,
+    seleniumForBrowser
 };
