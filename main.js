@@ -196,15 +196,30 @@ async function initiate(driver) {
             // Entered the map
             let inputLocationName = await driver.findElement(By.id('mat-input-3'));
 
-            await inputLocationName.sendKeys("North Vancouver,");
+            let citySpelledOut = ["Surr", "ey", ", BC"];
+            let currentSpellIndex = 0;
+            let inputLocationName_SuggestedLocationToConfirm;
+            const tryFindingTheSuggestion = async () => {
+                if (citySpelledOut[currentSpellIndex] === undefined) {
+                    throw "Could not find the suggestion city. The element cannot be found.";
+                }
+
+                await inputLocationName.sendKeys(citySpelledOut[currentSpellIndex]);
+
+                await sleep(1500);
+
+                try {
+                    inputLocationName_SuggestedLocationToConfirm = await driver.findElement(By.xpath("//span[contains(text(),'Surrey')]"));
+                } catch(err) {
+                    currentSpellIndex++;
+                    await tryFindingTheSuggestion();
+                }
+            }
+            await tryFindingTheSuggestion();
+
+            inputLocationName_SuggestedLocationToConfirm.click();
 
             await sleep(3000)
-
-            let inputLocationName_SuggestedLocationToConfirm = await driver.findElement(By.xpath("//span[contains(text(),'North Vancouver, BC')]"))
-
-            await inputLocationName_SuggestedLocationToConfirm.click();
-
-            await sleep(2000)
 
             let buttonSearch = await driver.findElement(By.className("mat-raised-button mat-button-base search-button mat-accent"))
 
@@ -212,7 +227,7 @@ async function initiate(driver) {
 
             await sleep(2000)
 
-            let buttonFoundLocation = await driver.findElement(By.xpath("//div[contains(text(),'1331 Marine Dr')]"))
+            let buttonFoundLocation = await driver.findElement(By.xpath("//div[contains(text(),'19950 Willowbrook Dr j7')]"))
 
             console.log("Initiated successfully.")
             console.log(" ___                  ___  __       ___    __           __   ___  __          __  \n" +
