@@ -20,7 +20,13 @@ const approvementLogic = (dateObject, dateText, callback = logic) => {
 // You can add/remove more logic here to decide if the appointment is accepted or not.
 function logic(acceptIfIs) {
   return (
-    (acceptIfIs.Between("2022-06-28T00:00:00.000Z", "2022-07-05T00:00:00.000Z"))  // If it was in June
+    (acceptIfIs.Between("2022-06-28T00:00:00.000Z", "2022-07-05T00:00:00.000Z")) ||  // If it was between June 28th and July 5th
+
+    (acceptIfIs.On("2022-06-28T00:00:00.000Z")) || // Or If it was on June 28th
+
+    (acceptIfIs.After("2022-06-28T00:00:00.000Z")) || // Or If it was after June 28th
+
+    (acceptIfIs.Before("2022-07-05T00:00:00.000Z")) // Or If it was before July 5th
   )
 }
 
