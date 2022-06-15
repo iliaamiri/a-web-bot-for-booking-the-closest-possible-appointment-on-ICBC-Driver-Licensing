@@ -4,7 +4,7 @@ This bot snipes the closest time (based on your logic) for an ICBC Road Test.
 ## Setup
 ```
 npm install
-node main
+npm run start
 ```
 
 ## Rename the config-sample.js to config.js 
