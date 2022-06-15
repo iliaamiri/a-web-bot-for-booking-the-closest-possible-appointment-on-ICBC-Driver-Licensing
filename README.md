@@ -17,13 +17,8 @@ Replace your ICBC credentials with the placeholders, and for automating the whol
 *!!! don't forget to keep that config.js file safe from any accesses !!!*
 
 ## Change the logic to your favour
-Change the if statement's clauses at main.js line 250. I'm just too lazy to make an interface for this one.
-
-Here's the current if statement:  
-![success logic](/git_img/success-logic.png)
-
-`dateText` is the date text of the latest result, which is being evaluated.  
-`date` is a Date instance based of the `dateText`
+Go to `src/approvementLogic.js` and use any of these 4 syntaxes to filter out the dates you want to book your appointment on: 
+![image](https://user-images.githubusercontent.com/37903573/173935970-b719f7e3-bbfc-4927-a5ba-c589d6381002.png)
 
 ## For it to automatically read your email inbox, enable the IMAP protocol and turn on the "allow for less-secure apps" in your settings.
 For Gmail:
