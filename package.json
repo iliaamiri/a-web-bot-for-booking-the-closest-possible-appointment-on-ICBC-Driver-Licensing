@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "imap": "^0.8.19",
+    "luxon": "^2.4.0",
     "mailparser": "^3.4.0",
     "readline-sync": "^1.4.10",
     "selenium-webdriver": "^4.1.0"

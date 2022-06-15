@@ -1,8 +1,8 @@
 const {Builder, By} = require('selenium-webdriver');
-const {getVerificationCode} = require('./emailVerification');
+const {getVerificationCode} = require('./libs/emailVerification');
 const { EOL } = require('os');
 
-const { randomIntFromInterval, sleep } = require('./helpers');
+const { randomIntFromInterval, sleep, getDateFromText} = require('./helpers');
 
 const {
     seleniumServer,
@@ -11,12 +11,13 @@ const {
     driverLicenseNumber,
     keyWord,
     intervalBetweenEachRefresh,
-    approvementLogic,
     citySpelledOut,
     cityFullName,
     branchStreetName,
     seleniumForBrowser
 } = require('./config');
+
+const approvementLogic = require('./approvementLogic');
 
 const monthsList = {
     January: 1,
@@ -35,8 +36,6 @@ const monthsList = {
 
 let attempt = 1;
 let lastDateText;
-
-
 
 
 (async function solution() {
@@ -59,7 +58,7 @@ let lastDateText;
             .usingServer(`http://${seleniumServer}:${seleniumServerPort}/wd/hub`)
             .build();
 
-        let buttonFoundLocation = await initiate(driver);
+        let buttonFoundLocation = await start(driver);
 
 
         let isAppointmentFoundResult;
@@ -75,7 +74,7 @@ let lastDateText;
             } catch (err) {
                 if (err['name'] !== undefined && err['name'] === "NoSuchElementError") {
                     console.log(`${EOL}Restarting due to session expiration...`)
-                    buttonFoundLocation = await initiate(driver)
+                    buttonFoundLocation = await start(driver)
                 }
             }
         }
@@ -162,7 +161,7 @@ let lastDateText;
 
 })();
 
-async function initiate(driver) {
+async function start(driver) {
     while (true) {
         try {
             console.log("Redirecting to the start-point...");
@@ -273,20 +272,4 @@ async function isAppointmentFound(driver, buttonFoundLocation) {
     }
 
     return false;
-}
-
-function getDateFromText(dateText) {
-    let arrayDate = dateText.split(",");
-
-   // let dayOfWeek = arrayDate[0].trim();
-
-    let monthAndDayOfMonth = arrayDate[1].trim();
-    let arrayMonthAndDay = monthAndDayOfMonth.split(" ");
-
-    let month = monthsList[arrayMonthAndDay[0]];
-    let dayOfMonth = parseInt(arrayMonthAndDay[1]);
-
-    let year = parseInt(arrayDate[2].trim());
-
-    return new Date(year, month, dayOfMonth)
 }

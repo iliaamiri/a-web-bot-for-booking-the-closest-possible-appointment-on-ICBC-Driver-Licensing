@@ -6,7 +6,7 @@ const {
     passwordOfEmail,
     imapServer,
     imapPort
-} = require('./config');
+} = require('../config');
 
 const imapConfig = {
     user: email,

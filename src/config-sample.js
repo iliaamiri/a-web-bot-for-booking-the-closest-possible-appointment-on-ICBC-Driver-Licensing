@@ -9,14 +9,6 @@ const lastName = "YOUR LAST NAME";
 const driverLicenseNumber = "YOUR DRIVER LICENSE #";
 const keyWord = "YOUR KEYWORD";
 
-// The approving logic for your soonest appointment
-const approvementLogic = (dateObject, dateText) => {
-    return (
-        (dateObject.getMonth() === 6 || dateText.includes("June")) || // If it was in June
-        (dateObject.getDay() <= 15 && dateText.includes("July")) // Or If it was in July AND was before or on 15th
-    ); 
-};
-
 // Location's name (Spelled-out)
 const citySpelledOut = ["Surr", "ey", ", BC"];
 const cityFullName = citySpelledOut.join("");
@@ -42,7 +34,6 @@ module.exports = {
     imapServer,
     imapPort,
     intervalBetweenEachRefresh,
-    approvementLogic,
     citySpelledOut,
     cityFullName,
     branchStreetName,
