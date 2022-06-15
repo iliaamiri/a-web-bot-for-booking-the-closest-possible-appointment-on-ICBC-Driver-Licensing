@@ -31,7 +31,7 @@ const monthsList = {
     October: 10,
     November: 11,
     December: 12,
-}
+};
 
 let attempt = 1;
 let lastDateText;

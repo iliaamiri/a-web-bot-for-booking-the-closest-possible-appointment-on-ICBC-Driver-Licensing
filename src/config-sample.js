@@ -29,7 +29,7 @@ const passwordOfEmail = "YOUR PASSWORD";
 const imapServer = "IMAP SERVER";
 const imapPort = 993;
 
-const intervalBetweenEachRefresh = 1000; // in milli-seconds
+const intervalBetweenEachRefresh = 1000; // in milliseconds
 
 module.exports = {
     seleniumServer,
