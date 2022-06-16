@@ -7,7 +7,7 @@ const acceptIfIs = {
     this._foundDate = luxon.DateTime.fromJSDate(dateObject);
     return this;
   },
-  
+
   Before(dateInISO) {
     let date = luxon.DateTime.fromISO(dateInISO);
 
@@ -24,7 +24,6 @@ const acceptIfIs = {
 
     return (this._foundDate.diff(date, ['months', 'days', 'hours']).toObject().days > 0);
   },
-
   On(dateInISO) {
     let date = luxon.DateTime.fromISO(dateInISO);
     console.log(this._foundDate.diff(date, ['months', 'days', 'hours']).toObject())
