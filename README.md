@@ -1,4 +1,6 @@
 # A Web Bot for Booking the Closest Possible Appointment on ICBC Driver Licensing
+![](https://img.shields.io/github/license/iliaamiri/a-web-bot-for-booking-the-closest-possible-appointment-on-ICBC-Driver-Licensing?color=%23623842)
+
 This bot snipes the closest time (based on your logic) for an ICBC Road Test.
 
 ## Setup and run the Selenium server
