@@ -7,17 +7,27 @@ npm install
 npm run start
 ```
 
-## Rename the config-sample.js to config.js 
-Replace your ICBC credentials with the placeholders, and for automating the whole process, setup your email's IMAP protocol and replace the placeholders with your creds in config.js as well.
+## Setup and run the Selenium server
+There are two options:
 
-## Setup and run the Selenium server and give the right port number and server ip in config.js
+### 1. No docker - Bare-bone on the OS _(Less Complicated)_
+You may refer to this repo that has some varieties of Selenium setups:
+* For Windows users: https://github.com/iliaamiri/selenium-setup-dependencies/tree/v4-windows-firefox
+* For Linux users: https://github.com/iliaamiri/selenium-setup-dependencies/tree/v4-linux-firefox
 
-### You may refer to this docker container I made and instantly setup the selenium: https://github.com/iliaamiri/selenium-on-Linux-setup-dependencies
+### 2. via Docker
+You may refer to this docker container (or any other one you'd want) and instantly setup the selenium: https://github.com/iliaamiri/selenium-on-Linux-setup-dependencies
 
-*!!! don't forget to keep that config.js file safe from any accesses !!!*
 
-## Change the logic to your favour
-Go to `src/approvementLogic.js` and use any of these 4 syntaxes to filter out the dates you want to book your appointment on: 
+## Setup the bot
+
+1. Rename the config-sample.js to config.js 
+2. Replace your ICBC credentials with the placeholders, and for automating the whole process, setup your email's IMAP protocol and replace the placeholders with your creds in config.js as well.
+3. Give the right port number and server ip of the Selenium server in config.js (if it's on your localhost, just leave it as is).  
+  ❗**Don't forget to keep that `config.js` file safe from any accesses**❗
+
+4. Change the logic to your favour  
+   Go to `src/approvementLogic.js` and use any of these 4 syntaxes to filter out the dates you want to book your appointment on: 
 ![image](https://user-images.githubusercontent.com/37903573/173935970-b719f7e3-bbfc-4927-a5ba-c589d6381002.png)
 
 ## For it to automatically read your email inbox, enable the IMAP protocol and turn on the "allow for less-secure apps" in your settings.
