@@ -36,4 +36,5 @@ npm run start
 ```
 
 ### How does Success Message look like:
-![success message](/git_img/success-message.png)
+
+![success message](https://user-images.githubusercontent.com/37903573/173990985-2a869a38-d67b-4a63-bfb4-38c2d9f3efa8.png)
