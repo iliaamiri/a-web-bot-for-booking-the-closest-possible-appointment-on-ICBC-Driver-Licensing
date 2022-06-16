@@ -148,7 +148,7 @@ let lastDateText;
             return console.log("Failed to fetch the verification code!! .. Terminating the process...");
         }
 
-        await verificationCodeInput.sendKeys(verificationCode)
+        await verificationCodeInput.sendKeys(verificationCode);
 
         let buttonSubmitCodeAndBookAppointment = await driver.findElement(By.xpath("//span[contains(text(),'Submit code and book appointment')]"));
 
@@ -247,19 +247,19 @@ async function start(driver) {
 }
 
 async function isAppointmentFound(driver, buttonFoundLocation) {
-    await buttonFoundLocation.click()
+    await buttonFoundLocation.click();
 
-    await sleep(2000)
+    await sleep(2000);
 
-    let divFoundSchedules = await driver.findElement(By.className("date-title"))
+    let divFoundSchedules = await driver.findElement(By.className("date-title"));
 
     let dateText = await divFoundSchedules.getText();
 
     if (lastDateText === dateText) {
         process.stdout.write("\r\x1b[K")
-        process.stdout.write(`Attempt #${attempt++}: ${dateText}`)
+        process.stdout.write(`Attempt #${attempt++}: ${dateText}`);
     } else {
-        process.stdout.write(`${EOL}Attempt #${attempt++}: ${dateText}`)
+        process.stdout.write(`${EOL}Attempt #${attempt++}: ${dateText}`);
     }
     lastDateText = dateText;
 
