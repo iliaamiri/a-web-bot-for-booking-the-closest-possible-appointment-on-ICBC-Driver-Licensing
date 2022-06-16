@@ -1,7 +1,5 @@
 const approvementLogic = require("../src/approvementLogic");
 
-var luxon = require('luxon');
-
 const expectItToBe = (foundDate, testLogic, expects) => {
   const isApproved = approvementLogic(foundDate, "", testLogic);
 
