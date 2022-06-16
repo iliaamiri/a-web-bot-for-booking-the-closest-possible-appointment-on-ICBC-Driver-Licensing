@@ -2,11 +2,12 @@ const luxon = require('luxon');
 
 const acceptIfIs = {
   _foundDate: null,
+
   SetFoundDate(dateObject) {
     this._foundDate = luxon.DateTime.fromJSDate(dateObject);
     return this;
   },
-
+  
   Before(dateInISO) {
     let date = luxon.DateTime.fromISO(dateInISO);
 
