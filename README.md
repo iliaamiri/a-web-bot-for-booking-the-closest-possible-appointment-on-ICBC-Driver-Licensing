@@ -1,12 +1,6 @@
 # A Web Bot for Booking the Closest Possible Appointment on ICBC Driver Licensing
 This bot snipes the closest time (based on your logic) for an ICBC Road Test.
 
-## Setup
-```
-npm install
-npm run start
-```
-
 ## Setup and run the Selenium server
 There are two options:
 
@@ -34,6 +28,12 @@ You may refer to this docker container (or any other one you'd want) and instant
 For Gmail:
 * https://support.google.com/accounts/answer/6010255?hl=en
 * https://support.google.com/mail/answer/7126229?hl=en#zippy=
+
+## aaaaand.. Run it 🤖
+```
+npm install
+npm run start
+```
 
 ### How does Success Message look like:
 ![success message](/git_img/success-message.png)
