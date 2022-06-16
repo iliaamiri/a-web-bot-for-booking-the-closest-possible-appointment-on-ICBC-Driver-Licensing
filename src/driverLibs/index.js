@@ -20,7 +20,7 @@ class DriverLibs {
       .usingServer(`http://${seleniumServer}:${seleniumServerPort}/wd/hub`)
   }
 
-  async isAppointmentFound() {
+  async isAppointmentFound(buttonFoundLocation) {
     await buttonFoundLocation.click()
 
     await sleep(2000)
