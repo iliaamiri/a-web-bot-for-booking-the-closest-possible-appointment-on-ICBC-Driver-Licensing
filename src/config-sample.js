@@ -29,7 +29,7 @@ const intervalBetweenEachRefresh = 1000; //
 const totalAttemptsForFetchingVerificationCode = 3;
 const intervalBetweenEachFetchingVerificationCodeFromEmail = 1000; // (can be 0)
 
-// --------------- Prompt for user input --------------- (NOT WORKING YET)
+// --------------- Prompt for user input ---------------
 const promptMeAndWaitForMyRestartCall = false; // If true, the bot will wait for your call to either enter the validation code MANUALLY or continue looking for appointment.
                                                 // If false, the bot will just restart the process and tries to find an appointment from scratch, again. (It won't stop and wait for your call).
 
