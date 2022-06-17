@@ -22,8 +22,9 @@ You may refer to this docker container (or any other one you'd want) and instant
   ❗**Don't forget to keep that `config.js` file safe from any accesses**❗
 
 4. Change the logic to your favour  
-   Go to `src/approvementLogic.js` and use any of these 4 syntaxes to filter out the dates you want to book your appointment on: 
-![image](https://user-images.githubusercontent.com/37903573/173935970-b719f7e3-bbfc-4927-a5ba-c589d6381002.png)
+   In `config.js` use any of these 4 syntaxes to filter out the dates you want to book your appointment on: 
+
+5. There are other configurations you can change in `config.js` as well. Feel free to take a look at and maybe change them as you see fit.
 
 ## For it to automatically read your email inbox, enable the IMAP protocol and turn on the "allow for less-secure apps" in your settings.
 For Gmail:
