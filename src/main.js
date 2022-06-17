@@ -222,17 +222,17 @@ async function start(driver) {
 
             inputLocationName_SuggestedLocationToConfirm.click();
 
-            await sleep(3000)
+            await sleep(3000);
 
-            let buttonSearch = await driver.findElement(By.className("mat-raised-button mat-button-base search-button mat-accent"))
+            let buttonSearch = await driver.findElement(By.className("mat-raised-button mat-button-base search-button mat-accent"));
 
-            await buttonSearch.click()
+            await buttonSearch.click();
 
-            await sleep(2000)
+            await sleep(2000);
 
-            let buttonFoundLocation = await driver.findElement(By.xpath(`//div[contains(text(),'${branchStreetName}')]`))
+            let buttonFoundLocation = await driver.findElement(By.xpath(`//div[contains(text(),'${branchStreetName}')]`));
 
-            console.log("Initiated successfully.")
+            console.log("Initiated successfully.");
             console.log(" ___                  ___  __       ___    __           __   ___  __          __  \n" +
                 "|__  |\\ | |  |  |\\/| |__  |__)  /\\   |  | /  \\ |\\ |    |__) |__  / _` | |\\ | /__` \n" +
                 "|___ | \\| \\__/  |  | |___ |  \\ /~~\\  |  | \\__/ | \\|    |__) |___ \\__> | | \\| .__/ \n" +
@@ -240,8 +240,8 @@ async function start(driver) {
 
             return buttonFoundLocation;
         } catch (e) {
-            console.log(`ERROR: ${e}`)
-            console.log(`Retrying...`)
+            console.log(`ERROR: ${e}`);
+            console.log(`Retrying...`);
         }
     }
 }
@@ -256,7 +256,7 @@ async function isAppointmentFound(driver, buttonFoundLocation) {
     let dateText = await divFoundSchedules.getText();
 
     if (lastDateText === dateText) {
-        process.stdout.write("\r\x1b[K")
+        process.stdout.write("\r\x1b[K");
         process.stdout.write(`Attempt #${attempt++}: ${dateText}`);
     } else {
         process.stdout.write(`${EOL}Attempt #${attempt++}: ${dateText}`);
