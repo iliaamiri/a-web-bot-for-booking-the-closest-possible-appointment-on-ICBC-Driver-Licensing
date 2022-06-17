@@ -186,16 +186,16 @@ async function start(driver) {
 
             await sleep(5000);
 
-            let buttonRescheduleAppointment = await driver.findElement(By.xpath("//span[contains(text(),'Reschedule appointment')]"))
+            let buttonRescheduleAppointment = await driver.findElement(By.xpath("//span[contains(text(),'Reschedule appointment')]"));
 
-            await buttonRescheduleAppointment.click()
+            await buttonRescheduleAppointment.click();
 
-            let buttonRescheduleAppointment_YesToConfirm = await driver.findElement(By.xpath("//span[contains(text(),'Yes')]"))
+            let buttonRescheduleAppointment_YesToConfirm = await driver.findElement(By.xpath("//span[contains(text(),'Yes')]"));
 
             await buttonRescheduleAppointment_YesToConfirm.click();
 
             console.log("Entered the searching area.");
-            console.log("Searching for the correct branch...")
+            console.log("Searching for the correct branch...");
 
             // Entered the map
             let inputLocationName = await driver.findElement(By.id('mat-input-3'));
