@@ -1,27 +1,45 @@
 // rename this file to config.js
 
+// --------------- Selenium Server ---------------
 const seleniumServer = "localhost";
 const seleniumServerPort = 4444;
 const seleniumForBrowser = "firefox";
 
-// Your Credentials
+// --------------- Your Credentials ---------------
 const lastName = "YOUR LAST NAME";
 const driverLicenseNumber = "YOUR DRIVER LICENSE #";
 const keyWord = "YOUR KEYWORD";
 
-// Location's name (Spelled-out)
-const citySpelledOut = ["Surr", "ey", ", BC"];
+// --------------- Location ---------------
+const citySpelledOut = ["Surr", "ey", ", BC"]; // Location's name (Spelled-out) e.g. Surrey, BC -> ["Surr", "ey", "BC"]
 const cityFullName = citySpelledOut.join("");
 
-const branchStreetName = "19950 Willowbrook Dr j7";
+const branchStreetName = "19950 Willowbrook Dr j7"; // Branch's street name
 
-// IMAP for Email Automation
+// --------------- IMAP for Email Automation --------------- (optional - For Full Automation)
 const email = "YOUR EMAIL";
 const passwordOfEmail = "YOUR PASSWORD";
 const imapServer = "IMAP SERVER";
 const imapPort = 993;
 
-const intervalBetweenEachRefresh = 1000; // in milliseconds
+// --------------- Intervals and waiting times (times are in milliseconds) ---------------
+const intervalBetweenEachRefresh = 1000; //
+
+// Fetching verification code from email
+const totalAttemptsForFetchingVerificationCode = 3;
+const intervalBetweenEachFetchingVerificationCodeFromEmail = 1000; // (can be 0)
+
+// --------------- Prompt for user input --------------- (NOT WORKING YET)
+const promptMeAndWaitForMyRestartCall = false; // If true, the bot will wait for your call to either enter the validation code MANUALLY or continue looking for appointment.
+                                                // If false, the bot will just restart the process and tries to find an appointment from scratch, again. (It won't stop and wait for your call).
+
+
+
+
+
+
+
+
 
 module.exports = {
     seleniumServer,
@@ -37,5 +55,8 @@ module.exports = {
     citySpelledOut,
     cityFullName,
     branchStreetName,
-    seleniumForBrowser
+    seleniumForBrowser,
+    totalAttemptsForFetchingVerificationCode,
+    intervalBetweenEachFetchingVerificationCodeFromEmail,
+    promptMeAndWaitForMyRestartCall
 };

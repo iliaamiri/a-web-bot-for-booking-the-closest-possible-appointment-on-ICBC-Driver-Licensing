@@ -14,7 +14,7 @@ const {
     citySpelledOut,
     cityFullName,
     branchStreetName,
-    seleniumForBrowser
+    seleniumForBrowser, intervalBetweenEachFetchingVerificationCodeFromEmail, totalAttemptsForFetchingVerificationCode
 } = require('./config');
 
 const approvementLogic = require('./approvementLogic');
@@ -71,10 +71,12 @@ let lastDateText;
                     break;
                 }
                 await sleep(intervalBetweenEachRefresh);
+
+
             } catch (err) {
                 if (err['name'] !== undefined && err['name'] === "NoSuchElementError") {
-                    console.log(`${EOL}Restarting due to session expiration...`)
-                    buttonFoundLocation = await start(driver)
+                    console.log(`${EOL}Restarting due to session expiration...`);
+                    buttonFoundLocation = await start(driver);
                 }
             }
         }
@@ -105,44 +107,28 @@ let lastDateText;
 
         let verificationCodeInput = await driver.findElement(By.xpath("//input[@formcontrolname='otpField']"));
 
-        await sleep(3000)
+        await sleep(3000);
 
-        let verificationCode = await getVerificationCode()
-            .then(resultOfAttempt1 => {
-                console.log("Fetching verification code from inbox (Attempt 1/3): " + resultOfAttempt1)
+        let verificationCode;
+        let totalAttempts = totalAttemptsForFetchingVerificationCode;
+        for (let i = 1; i <= totalAttempts; i++) {
+            try {
+                console.log(`Fetching verification code from inbox (Attempt ${i}/${totalAttempts})...`);
+                let resultOfAttempt = await getVerificationCode();
 
-                if (resultOfAttempt1 === "No Email") {
-                    return getVerificationCode();
+                if (resultOfAttempt !== "No Email") {
+                    verificationCode = resultOfAttempt;
+
+                    console.log(`✅ Verification code: ${verificationCode}`);
+
+                    break;
                 }
 
-                return resultOfAttempt1;
-            })
-            .then(resultOfAttempt2 => {
-                if (resultOfAttempt2 === "No Email"){
-                    console.log("Fetching verification code from inbox (Attempt 2/3): " + resultOfAttempt2);
-                    return getVerificationCode();
-                }
-
-                return resultOfAttempt2;
-            })
-            .then(resultOfAttempt3 => {
-                if (resultOfAttempt3 === "No Email"){
-                    console.log("Fetching verification code from inbox (Attempt 3/3): " + resultOfAttempt3);
-                    return getVerificationCode();
-                }
-
-                return resultOfAttempt3;
-            })
-            .then(resultOfAttempt4 => {
-                if (resultOfAttempt4 !== "No Email") {
-                    return resultOfAttempt4;
-                } else {
-                    console.log("All attempts to fetch verification code from inbox failed!")
-                }
-            })
-            .catch(err => {
-                console.log("FATAL ERROR: " + err)
-            })
+                await sleep(intervalBetweenEachFetchingVerificationCodeFromEmail);
+            } catch (er) {
+                console.log("FATAL ERROR: " + er);
+            }
+        }
 
         if (verificationCode === undefined) {
             return console.log("Failed to fetch the verification code!! .. Terminating the process...");
@@ -182,17 +168,31 @@ async function start(driver) {
 
             await buttonSignIn.click();
 
-            console.log("Rescheduling...");
+            console.log("Waiting for the panel to load...");
 
             await sleep(5000);
 
-            let buttonRescheduleAppointment = await driver.findElement(By.xpath("//span[contains(text(),'Reschedule appointment')]"));
+            try {
+                console.log("Looking for the Book Appointment button...");
 
-            await buttonRescheduleAppointment.click();
+                // Not sure about this xpath, but I hope it works :) // TODO: make sure that the button is called "Book Appointment" or something like that
+                let buttonBookAppointment = await driver.findElement(By.xpath("//span[contains(text(),'Book Appointment') or contains(text(),'New Appointment')]"));
 
-            let buttonRescheduleAppointment_YesToConfirm = await driver.findElement(By.xpath("//span[contains(text(),'Yes')]"));
+                console.log("Book Appointment button found! Clicking it...");
+                await buttonBookAppointment.click();
+            } catch (err) {
+                console.log("Book Appointment button not found 😵‍💫");
+                console.log("Looking for the Schedule Appointment button...");
 
-            await buttonRescheduleAppointment_YesToConfirm.click();
+                let buttonRescheduleAppointment = await driver.findElement(By.xpath("//span[contains(text(),'Reschedule appointment')]"));
+
+                console.log("Schedule Appointment button found! Clicking it...");
+                await buttonRescheduleAppointment.click();
+
+                let buttonRescheduleAppointment_YesToConfirm = await driver.findElement(By.xpath("//span[contains(text(),'Yes')]"));
+
+                await buttonRescheduleAppointment_YesToConfirm.click();
+            }
 
             console.log("Entered the searching area.");
             console.log("Searching for the correct branch...");
