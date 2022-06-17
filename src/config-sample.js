@@ -22,6 +22,20 @@ const passwordOfEmail = "YOUR PASSWORD";
 const imapServer = "IMAP SERVER";
 const imapPort = 993;
 
+// --------------- Logic for finding appointment ---------------
+// You can add/remove more logic here to decide if the appointment is accepted or not.
+const logic = (acceptIfIs) => {
+    return (
+      (acceptIfIs.Between("2022-06-28", "2022-07-05")) ||  // If it was between June 28th and July 5th
+
+      (acceptIfIs.On("2022-06-28")) || // Or If it was on June 28th
+
+      (acceptIfIs.After("2022-06-28")) || // Or If it was after June 28th
+
+      (acceptIfIs.Before("2022-07-05")) // Or If it was before July 5th
+    )
+}
+
 // --------------- Intervals and waiting times (times are in milliseconds) ---------------
 const intervalBetweenEachRefresh = 1000; //
 
@@ -58,5 +72,6 @@ module.exports = {
     seleniumForBrowser,
     totalAttemptsForFetchingVerificationCode,
     intervalBetweenEachFetchingVerificationCodeFromEmail,
-    promptMeAndWaitForMyRestartCall
+    promptMeAndWaitForMyRestartCall,
+    logic
 };

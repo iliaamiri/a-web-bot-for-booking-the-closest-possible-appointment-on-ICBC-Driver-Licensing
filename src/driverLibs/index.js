@@ -261,14 +261,17 @@ class DriverLibs {
       "Enter the verification code manually."
     ];
     while (true) {
-      const chosenOption = readlineSync.keyInSelect(decisions, "Please make your decision (type the option's number to select):");
+      const chosenOption = readlineSync.keyInSelect(decisions, "Please make your decision (type the option's number to select):", { cancel: "Exit the program." });
 
-      console.log("You chose: " + decisions[chosenOption]);
+      console.log("You chose: " + (decisions[chosenOption] || "Exit the program."));
 
       if (chosenOption === 0) {
         return 0;
       } else if (chosenOption === 1) {
         return readlineSync.question("Please enter the verification code: ");
+      } else if (chosenOption === -1) {
+        console.log("Exiting the program...");
+        process.exit(0);
       } else {
         console.log("Invalid option. Please try again.");
       }
