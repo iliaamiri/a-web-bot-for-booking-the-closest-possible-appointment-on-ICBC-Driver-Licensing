@@ -23,6 +23,7 @@ You may refer to this docker container (or any other one you'd want) and instant
 
 4. Change the logic to your favour  
    In `config.js` use any of these 4 syntaxes to filter out the dates you want to book your appointment on: 
+![image](https://user-images.githubusercontent.com/37903573/174266593-7238facc-b7b2-412f-b14a-f9a660c388ea.png)
 
 5. There are other configurations you can change in `config.js` as well. Feel free to take a look at and maybe change them as you see fit.
 
