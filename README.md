@@ -35,6 +35,10 @@ For Gmail:
 * https://support.google.com/accounts/answer/6010255?hl=en
 * https://support.google.com/mail/answer/7126229?hl=en#zippy=
 
+**Update**❗❗: Gmail updated their security policies. So, now you have to make sure you enabled your 2-step-verification on your gmail. And refer to this link to setup and use "App Passwords": https://support.google.com/accounts/answer/185833
+
+* You then will use your App Password instead of your regular gmail password, in the `config.js`
+
 ## aaaaand.. Run it 🤖
 ```
 npm install

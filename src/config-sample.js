@@ -12,6 +12,7 @@ const keyWord = "YOUR KEYWORD";
 
 // --------------- Location ---------------
 const citySpelledOut = ["Surr", "ey", ", BC"]; // Location's name (Spelled-out) e.g. Surrey, BC -> ["Surr", "ey", "BC"]
+// const cityFullName = "Surrey, BC"; // IF The bottom one didn't work, try spelling this fully and not spelling the whole thing at the top. (eg. try "Surr", "ey" OR different variations).
 const cityFullName = citySpelledOut.join("");
 
 const branchStreetName = "19950 Willowbrook Dr j7"; // Branch's street name
