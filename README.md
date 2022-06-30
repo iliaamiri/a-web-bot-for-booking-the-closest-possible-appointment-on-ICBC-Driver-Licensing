@@ -37,6 +37,11 @@ For Gmail:
 
 **Update**❗❗: Gmail updated their security policies. So, now you have to make sure you enabled your 2-step-verification on your gmail. And refer to this link to setup and use "App Passwords": https://support.google.com/accounts/answer/185833
 
+In the App Password setting, select the "Other" option from the drop down (see the image below):
+![image](https://user-images.githubusercontent.com/37903573/176601798-283ee36f-1e89-4ca9-bfa5-2da40232a418.png)
+
+Then pick a name (whatever you want) and just click "Generate". You'll get a random generated password. Copy that and use it as your IMAP password in `config.js`.
+
 * You then will use your App Password instead of your regular gmail password, in the `config.js`
 
 ## aaaaand.. Run it 🤖
