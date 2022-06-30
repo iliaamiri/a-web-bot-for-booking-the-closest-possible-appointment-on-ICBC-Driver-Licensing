@@ -79,14 +79,18 @@ class DriverLibs {
           console.log("Book Appointment button not found 😵‍💫");
           console.log("Looking for the Schedule Appointment button...");
 
-          let buttonRescheduleAppointment = await this._driver.findElement(By.xpath("//span[contains(text(),'Reschedule appointment')]"));
+          try {
+            let buttonRescheduleAppointment = await this._driver.findElement(By.xpath("//span[contains(text(),'Reschedule appointment')]"));
 
-          console.log("Schedule Appointment button found! Clicking it...");
-          await buttonRescheduleAppointment.click();
-
-          let buttonRescheduleAppointment_YesToConfirm = await this._driver.findElement(By.xpath("//span[contains(text(),'Yes')]"));
-
-          await buttonRescheduleAppointment_YesToConfirm.click();
+            console.log("Schedule Appointment button found! Clicking it...");
+            await buttonRescheduleAppointment.click();
+  
+            let buttonRescheduleAppointment_YesToConfirm = await this._driver.findElement(By.xpath("//span[contains(text(),'Yes')]"));
+  
+            await buttonRescheduleAppointment_YesToConfirm.click();
+          } catch (err) {
+            console.log("Schedule Appointment button NOT FOUND... Might be in searching area.");
+          }
         }
 
         console.log("Entered the searching area.");
@@ -102,9 +106,11 @@ class DriverLibs {
             throw "Could not find the suggestion city. The element cannot be found.";
           }
 
-          await inputLocationName.sendKeys(citySpelledOut[currentSpellIndex]);
+          if (citySpelledOut[currentSpellIndex]) {
+            await inputLocationName.sendKeys(citySpelledOut[currentSpellIndex]);
+          }
 
-          await sleep(1500);
+          await sleep(3500);
 
           try {
             inputLocationName_SuggestedLocationToConfirm = await this._driver.findElement(By.xpath(`//span[contains(text(),'${cityFullName}')]`));

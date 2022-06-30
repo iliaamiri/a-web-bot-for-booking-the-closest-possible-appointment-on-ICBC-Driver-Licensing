@@ -85,6 +85,7 @@ const getVerificationCode = () => {
 // getVerificationCode().then((result) => {
 //     console.log(result)
 // }).catch(err => {
+//     console.log(imapConfig)
 //     console.log("FUCKING ERROR:" + err)
 // }).catch(err => console.log("WATAAAAA"))
 
