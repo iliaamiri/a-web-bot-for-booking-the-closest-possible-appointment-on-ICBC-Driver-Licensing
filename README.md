@@ -2,6 +2,9 @@
 
 This bot snipes the closest time (based on your logic) for an ICBC Road Test.
 
+## Pre-requisites and Installations
+1. You only need to install Node.js (https://nodejs.org/en/download/)
+
 ## Setup and run the Selenium server
 There are two options:
 
@@ -22,13 +25,19 @@ You may refer to this docker container (or any other one you'd want) and instant
   ❗**Don't forget to keep that `config.js` file safe from any accesses**❗
 
 4. Change the logic to your favour  
-   Go to `src/approvementLogic.js` and use any of these 4 syntaxes to filter out the dates you want to book your appointment on: 
-![image](https://user-images.githubusercontent.com/37903573/173935970-b719f7e3-bbfc-4927-a5ba-c589d6381002.png)
+   In `config.js` use any of these 4 syntaxes to filter out the dates you want to book your appointment on: 
+![image](https://user-images.githubusercontent.com/37903573/174266593-7238facc-b7b2-412f-b14a-f9a660c388ea.png)
+
+5. There are other configurations you can change in `config.js` as well. Feel free to take a look at and maybe change them as you see fit.
 
 ## For it to automatically read your email inbox, enable the IMAP protocol and turn on the "allow for less-secure apps" in your settings.
 For Gmail:
 * https://support.google.com/accounts/answer/6010255?hl=en
 * https://support.google.com/mail/answer/7126229?hl=en#zippy=
+
+**Update**❗❗: Gmail updated their security policies. So, now you have to make sure you enabled your 2-step-verification on your gmail. And refer to this link to setup and use "App Passwords": https://support.google.com/accounts/answer/185833
+
+* You then will use your App Password instead of your regular gmail password, in the `config.js`
 
 ## aaaaand.. Run it 🤖
 ```
