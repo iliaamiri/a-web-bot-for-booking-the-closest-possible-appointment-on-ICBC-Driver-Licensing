@@ -22,8 +22,8 @@ const getVerificationCode = () => {
         try {
             const imap = new Imap(imapConfig);
             imap.once('ready', () => {
-                imap.openBox('INBOX', true, () => {
-                    imap.search(['UNSEEN', ['FROM', "roadtests-donotreply@icbc.com"], ['SINCE', new Date()], ['SUBJECT', "Verification code to book a road test"]], (err, results) => {
+                imap.openBox('INBOX', true, (err, result) => {
+                    imap.search(['UNSEEN', ['SUBJECT', "Verification code to book a road test"]], (err, results) => {
                         if (err)
                             return reject(err);
                         if (results.length === 0)
@@ -41,7 +41,7 @@ const getVerificationCode = () => {
                                     }
                                     let html = parsed.html;
                                    // const beginningString = "<h2 style=\"font-family:&#39;Montserrat&#39;,helvetica neue,helvetica,arial,verdana,sans-serif;font-size:20px\">";
-
+                                    console.log(html);
                                     const verificationCode = html.match(/;font-size:20px">(.*)<\/h2>/)
 
                                     if (verificationCode !== null) {
@@ -82,12 +82,12 @@ const getVerificationCode = () => {
     })
 }
 
-// getVerificationCode().then((result) => {
-//     console.log(result)
-// }).catch(err => {
-//     console.log(imapConfig)
-//     console.log("FUCKING ERROR:" + err)
-// }).catch(err => console.log("WATAAAAA"))
+getVerificationCode().then((result) => {
+    console.log(result)
+}).catch(err => {
+    console.log(imapConfig)
+    console.log("FUCKING ERROR:" + err)
+}).catch(err => console.log("WATAAAAA"))
 
 module.exports = {
     getVerificationCode

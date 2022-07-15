@@ -1,6 +1,7 @@
 const {Builder, By} = require("selenium-webdriver");
 const {EOL} = require("os");
 
+const notifier = require('node-notifier');
 const readlineSync = require('readline-sync');
 
 const {
@@ -21,6 +22,7 @@ const approvementLogic = require("../approvementLogic");
 const {getVerificationCode} = require("../libs/emailVerification");
 
 class DriverLibs {
+  _failedDueToSessionCounter = 0;
   _driver = null;
 
   async getDriver() {
@@ -166,7 +168,8 @@ class DriverLibs {
             break;
           } catch (err) {
             if (err.message === "Restarting the process") {
-              console.log("Restarting the process...");
+              notifier.notify('FAILING 5 TIMES IN A ROW!!!');
+              console.log("Exiting the process...");
             } else {
               throw err;
             }
@@ -174,19 +177,28 @@ class DriverLibs {
         }
         await sleep(intervalBetweenEachRefresh);
 
-
+        // reset the failing attempts.
+        this._failedDueToSessionCounter = 0;
       } catch (err) {
         if (err['name'] !== undefined && err['name'] === "NoSuchElementError") {
           console.log(`${EOL}Restarting due to session expiration...`);
-          buttonFoundLocation = await this.getButtonFoundLocation();
+          if (this._failedDueToSessionCounter < 5) {
+            buttonFoundLocation = await this.getButtonFoundLocation();
+          } else {
+            notifier.notify('FAILING 5 TIMES IN A ROW!!!');
+            process.exit(0);
+          }
         } else {
           console.log(`FATAL ERROR: ${err}`);
+          notifier.notify('Fatal error !!!! 💀');
+          process.exit(0);
         }
       }
     }
   }
 
   async finishTheVerificationProcessAndGetTheAppointment(isAppointmentFoundResult) {
+    notifier.notify('DATE FOUND ✅');
     let buttonScheduleHour = await this._driver.findElement(By.xpath("//div[@class='appointment-listings']//child::mat-button-toggle[1]"));
 
     await buttonScheduleHour.click();
@@ -248,6 +260,7 @@ class DriverLibs {
           verificationCode = verificationCodeOrZero;
         }
       } else {
+        notifier.notify('FAILING 5 TIMES IN A ROW!!!');
         throw "Restarting the process";
       }
     }
