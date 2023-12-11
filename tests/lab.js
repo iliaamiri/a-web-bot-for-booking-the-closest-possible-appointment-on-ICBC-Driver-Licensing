@@ -1,3 +1,3 @@
-const notifier = require('node-notifier');
+const notifier = require("node-notifier");
 // String
-notifier.notify('Message');
+notifier.notify("Message");
