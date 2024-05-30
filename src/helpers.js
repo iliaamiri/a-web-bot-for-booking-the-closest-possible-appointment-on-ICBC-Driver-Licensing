@@ -1,44 +1,40 @@
-const sleep = (ms) => {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+export const sleep = (ms) =>
+  new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
 
-const randomIntFromInterval = (min, max) => { // min and max included
-    return Math.floor(Math.random() * (max - min + 1) + min)
-}
+export const randomIntFromInterval = (
+  min,
+  max, // min and max included
+) => Math.floor(Math.random() * (max - min + 1) + min);
 
-const monthsList = {
-    January: 1,
-    February: 2,
-    March: 3,
-    April: 4,
-    May: 5,
-    June: 6,
-    July: 7,
-    August: 8,
-    September: 9,
-    October: 10,
-    November: 11,
-    December: 12,
+export const monthsList = {
+  January: 0,
+  February: 1,
+  March: 2,
+  April: 3,
+  May: 4,
+  June: 5,
+  July: 6,
+  August: 7,
+  September: 8,
+  October: 9,
+  November: 10,
+  December: 11,
 };
 
-const getDateFromText = (dateText) => {
-    let arrayDate = dateText.split(",");
+export const getDateFromText = (dateText) => {
+  const arrayDate = dateText.split(",");
 
-    // let dayOfWeek = arrayDate[0].trim();
+  // let dayOfWeek = arrayDate[0].trim();
 
-    let monthAndDayOfMonth = arrayDate[1].trim();
-    let arrayMonthAndDay = monthAndDayOfMonth.split(" ");
+  const monthAndDayOfMonth = arrayDate[1].trim();
+  const arrayMonthAndDay = monthAndDayOfMonth.split(" ");
 
-    let month = monthsList[arrayMonthAndDay[0]];
-    let dayOfMonth = parseInt(arrayMonthAndDay[1]);
+  const month = monthsList[arrayMonthAndDay[0]];
+  const dayOfMonth = parseInt(arrayMonthAndDay[1], 10);
 
-    let year = parseInt(arrayDate[2].trim());
+  const year = parseInt(arrayDate[2].trim(), 10);
 
-    return new Date(year, month, dayOfMonth)
-}
-
-module.exports = {
-    sleep,
-    randomIntFromInterval,
-    getDateFromText
-}
+  return new Date(year, month, dayOfMonth);
+};

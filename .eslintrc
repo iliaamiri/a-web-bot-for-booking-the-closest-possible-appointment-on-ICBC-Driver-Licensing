@@ -1,0 +1,20 @@
+{
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["prettier", "@babel"],
+  "rules": {
+    "prettier/prettier": ["error"],
+    "no-await-in-loop": "off",
+    "no-console": "off",
+    "class-methods-use-this": "off",
+    "camelcase": "off",
+    "no-plusplus": "off",
+    "no-throw-literal": "off",
+    "import/extensions": "off",
+    "import/prefer-default-export": "off",
+    "consistent-return": "off"
+  },
+  "env": {
+    "jest": true
+  },
+  "parser": "@babel/eslint-parser"
+}
