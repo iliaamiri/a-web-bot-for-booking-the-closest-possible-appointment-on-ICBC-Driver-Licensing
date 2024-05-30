@@ -5,21 +5,6 @@ This bot snipes the closest time (based on your logic) for an ICBC Road Test.
 ## Pre-requisites and Installations
 1. You only need to install Node.js (https://nodejs.org/en/download/)
 
-## UPDATE
-Save yourself the hassle setting up Selenium server. Go on `puppeteer` branch. It will use puppeteer as it always should have.
-
-## Setup and run the Selenium server
-There are two options:
-
-### 1. No docker - Bare-bone on the OS _(Less Complicated)_
-You may refer to this repo that has some varieties of Selenium setups:
-* For Windows users: https://github.com/iliaamiri/selenium-setup-dependencies/tree/v4-windows-firefox
-* For Linux users: https://github.com/iliaamiri/selenium-setup-dependencies/tree/v4-linux-firefox
-
-### 2. via Docker
-You may refer to this docker container (or any other one you'd want) and instantly setup the selenium: https://github.com/iliaamiri/selenium-on-Linux-setup-dependencies
-
-
 ## Setup the bot
 
 1. Rename the config-sample.js to config.js 
