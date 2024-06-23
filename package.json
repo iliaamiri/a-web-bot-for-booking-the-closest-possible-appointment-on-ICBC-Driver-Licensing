@@ -20,8 +20,7 @@
     "mailparser": "^3.4.0",
     "node-notifier": "^10.0.1",
     "puppeteer": "^21.6.0",
-    "readline-sync": "^1.4.10",
-    "selenium-webdriver": "^4.1.0"
+    "readline-sync": "^1.4.10"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.23.3",

@@ -9,7 +9,6 @@ This bot snipes the closest time (based on your logic) for an ICBC Road Test.
 
 1. Rename the config-sample.js to config.js 
 2. Replace your ICBC credentials with the placeholders, and for automating the whole process, setup your email's IMAP protocol and replace the placeholders with your creds in config.js as well.
-3. Give the right port number and server ip of the Selenium server in config.js (if it's on your localhost, just leave it as is).  
   ❗**Don't forget to keep that `config.js` file safe from any accesses**❗
 
 4. Change the logic to your favour  

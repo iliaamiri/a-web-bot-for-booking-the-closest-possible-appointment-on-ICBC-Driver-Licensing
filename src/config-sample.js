@@ -1,10 +1,5 @@
 // rename this file to config.js
 
-// --------------- Selenium Server ---------------
-export const seleniumServer = "localhost";
-export const seleniumServerPort = 4444;
-export const seleniumForBrowser = "firefox";
-
 // --------------- Your Credentials ---------------
 export const lastName = "YOUR LAST NAME";
 export const driverLicenseNumber = "YOUR DRIVER LICENSE #";
@@ -15,7 +10,7 @@ export const citySpelledOut = ["Surr", "ey", ", BC"]; // Location's name (Spelle
 // const cityFullName = "Surrey, BC"; // IF The bottom one didn't work, try spelling this fully and not spelling the whole thing at the top. (eg. try "Surr", "ey" OR different variations).
 export const cityFullName = citySpelledOut.join("");
 
-export const branchStreetName = "19950 Willowbrook Dr j7"; // Branch's street name
+export const branchStreetNames = ["19950 Willowbrook Dr j7"]; // Branches' street names
 
 // --------------- IMAP for Email Automation --------------- (optional - For Full Automation)
 export const email = "YOUR EMAIL";

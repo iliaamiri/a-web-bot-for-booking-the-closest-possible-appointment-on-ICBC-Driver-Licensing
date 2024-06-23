@@ -1,4 +1,3 @@
-import { Builder, By } from "selenium-webdriver";
 import { EOL } from "os";
 import notifier from "node-notifier";
 import readlineSync from "readline-sync";
@@ -60,7 +59,9 @@ class WebDriverHelper {
 
   async checkForSoftBan() {
     try {
-      const errorMessageElement = await this.page.$x("//span[contains(text(), 'Hmm, looks like something went wrong on our end. Please try again later.')]");
+      const errorMessageElement = await this.page.$x(
+        "//span[contains(text(), 'Hmm, looks like something went wrong on our end. Please try again later.')]",
+      );
       if (errorMessageElement.length > 0) {
         logWithTimestamp("Soft ban detected. Waiting for 1 hour...");
         await sleep(60 * 60 * 1000);
@@ -111,7 +112,7 @@ class WebDriverHelper {
           logWithTimestamp("Looking for the Book Appointment button...");
 
           const [buttonBookAppointment] = await this.page.$x(
-            "//span[contains(text(),'Book Appointment') or contains(text(),'New Appointment')]"
+            "//span[contains(text(),'Book Appointment') or contains(text(),'New Appointment')]",
           );
           if (!buttonBookAppointment) {
             throw new Error("Book Appointment Button not found");
@@ -125,7 +126,7 @@ class WebDriverHelper {
 
           try {
             const [buttonRescheduleAppointment] = await this.page.$x(
-              "//button[contains(text(),'Reschedule appointment')]"
+              "//button[contains(text(),'Reschedule appointment')]",
             );
 
             if (buttonRescheduleAppointment) {
@@ -175,7 +176,7 @@ class WebDriverHelper {
 
           try {
             [inputLocationName_SuggestedLocationToConfirm] = await this.page.$x(
-              `//span[contains(text(),'${cityFullName}')]`
+              `//span[contains(text(),'${cityFullName}')]`,
             );
             if (!inputLocationName_SuggestedLocationToConfirm) {
               throw new Error("Suggested location not found");
@@ -209,9 +210,9 @@ class WebDriverHelper {
         logWithTimestamp("Initiated successfully.");
         console.log(
           " ___                  ___  __       ___    __           __   ___  __          __  \n" +
-          "|__  |\\ | |  |  |\\/| |__  |__)  /\\   |  | /  \\ |\\ |    |__) |__  / _` | |\\ | /__` \n" +
-          "|___ | \\| \\__/  |  | |___ |  \\ /~~\\  |  | \\__/ | \\|    |__) |___ \\__> | | \\| .__/ \n" +
-          "                                                                                  "
+            "|__  |\\ | |  |  |\\/| |__  |__)  /\\   |  | /  \\ |\\ |    |__) |__  / _` | |\\ | /__` \n" +
+            "|___ | \\| \\__/  |  | |___ |  \\ /~~\\  |  | \\__/ | \\|    |__) |___ \\__> | | \\| .__/ \n" +
+            "                                                                                  ",
         );
 
         return buttonFoundLocation;
@@ -298,7 +299,9 @@ class WebDriverHelper {
   async finishTheVerificationProcessAndGetTheAppointment(isAppointmentFoundResult) {
     notifier.notify("DATE FOUND ✅");
 
-    const [buttonScheduleHour] = await this.page.$x("//div[@class='appointment-listings']//child::mat-button-toggle[1]");
+    const [buttonScheduleHour] = await this.page.$x(
+      "//div[@class='appointment-listings']//child::mat-button-toggle[1]",
+    );
     if (!buttonScheduleHour) throw new Error("Schedule hour button not found.");
     await buttonScheduleHour.click();
     await sleep(2000);
@@ -308,12 +311,16 @@ class WebDriverHelper {
     await buttonReviewAppointment.click();
     await sleep(2000);
 
-    const [buttonNext] = await this.page.$x("//div[contains(@class, 'action-button-container')]//button[contains(text(), 'Next')]");
+    const [buttonNext] = await this.page.$x(
+      "//div[contains(@class, 'action-button-container')]//button[contains(text(), 'Next')]",
+    );
     if (!buttonNext) throw new Error("Next button not found.");
     await buttonNext.click();
     await sleep(2000);
 
-    const [buttonSend] = await this.page.$x("//div[contains(@class, 'otp-action-buttons')]//button[@type='submit' and contains(text(), 'Send')]");
+    const [buttonSend] = await this.page.$x(
+      "//div[contains(@class, 'otp-action-buttons')]//button[@type='submit' and contains(text(), 'Send')]",
+    );
     if (!buttonSend) throw new Error("Send button not found.");
     await buttonSend.click();
     await sleep(2000);
@@ -365,22 +372,23 @@ class WebDriverHelper {
         const button = document.querySelector("button.submit-code-button");
         return button && !button.disabled;
       },
-      { timeout: 10000 }
+      { timeout: 10000 },
     );
 
     const buttonSubmitCodeAndBookAppointment = await this.page.$("button.submit-code-button:not([disabled])");
-    if (!buttonSubmitCodeAndBookAppointment) throw new Error("Submit code and book appointment button not found or is disabled.");
+    if (!buttonSubmitCodeAndBookAppointment)
+      throw new Error("Submit code and book appointment button not found or is disabled.");
 
     logWithTimestamp("Found 'Submit code and book appointment' button:", buttonSubmitCodeAndBookAppointment);
     logWithTimestamp("Attempting to scroll to the submit button...");
 
-    await buttonSubmitCodeAndBookAppointment.evaluate(el => el.scrollIntoView());
+    await buttonSubmitCodeAndBookAppointment.evaluate((el) => el.scrollIntoView());
     await buttonSubmitCodeAndBookAppointment.click();
 
     logWithTimestamp(
       `Congrats! Your appointment is now booked on: ${isAppointmentFoundResult.getDate()}/${
         isAppointmentFoundResult.getMonth() + 1
-      }/${isAppointmentFoundResult.getFullYear()}  ... ENJOY!`
+      }/${isAppointmentFoundResult.getFullYear()}  ... ENJOY!`,
     );
   }
 
@@ -390,7 +398,7 @@ class WebDriverHelper {
       const chosenOption = readlineSync.keyInSelect(
         decisions,
         "Please make your decision (type the option's number to select):",
-        { cancel: "Exit the program." }
+        { cancel: "Exit the program." },
       );
 
       logWithTimestamp(`You chose: ${decisions[chosenOption] || "Exit the program."}`);
