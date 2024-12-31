@@ -261,6 +261,7 @@ class WebDriverHelper {
                 logWithTimestamp("Try to pass the verification and finalize...");
                 await this.finishTheVerificationProcessAndGetTheAppointment(isAppointmentFoundResult);
                 foundAppointment = true;
+                await sleep(5000);
                 break; // Exit the branch loop after successful appointment
               } catch (err) {
                 if (err.message === "Restarting the process") {
