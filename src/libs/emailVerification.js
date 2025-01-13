@@ -76,5 +76,5 @@ try {
 } catch (e) {
   console.log(e);
   console.log(imapConfig);
-  console.log(`ERROR:${e}`);
+  console.log(`ERROR:`, e);
 }
