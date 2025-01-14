@@ -19,9 +19,9 @@ import approvementLogic from "../approvementLogic.js";
 import { getVerificationCode } from "./emailVerification.js";
 
 // Helper function to log messages with timestamps
-const logWithTimestamp = (message) => {
+const logWithTimestamp = (...messages) => {
   const timestamp = new Date().toLocaleString();
-  console.log(`[${timestamp}] ${message}`);
+  console.log(`[${timestamp}]`, ...messages);
 };
 
 class WebDriverHelper {
@@ -217,7 +217,7 @@ class WebDriverHelper {
 
         return buttonFoundLocation;
       } catch (e) {
-        logWithTimestamp(`ERROR: ${e}`);
+        logWithTimestamp(`ERROR:`, e);
         logWithTimestamp(`Retrying...`);
       }
     }
@@ -235,7 +235,7 @@ class WebDriverHelper {
             buttonFoundLocation = await this.getButtonFoundLocation(branchStreetName);
             break;
           } catch (err) {
-            logWithTimestamp(`Initialization error: ${err}`);
+            logWithTimestamp(`Initialization error:`, err);
             this.initialized = false;
             await this.initialize();
           }
@@ -249,7 +249,7 @@ class WebDriverHelper {
             try {
               isAppointmentFoundResult = await this.isAppointmentFound(buttonFoundLocation);
             } catch (err) {
-              logWithTimestamp(`Error during isAppointmentFound: ${err}`);
+              logWithTimestamp(`Error during isAppointmentFound:`, err);
               this.initialized = false;
               await this.initialize();
               buttonFoundLocation = await this.getButtonFoundLocation(branchStreetName);
@@ -280,7 +280,7 @@ class WebDriverHelper {
 
             WebDriverHelper.attempt++;
           } catch (err) {
-            logWithTimestamp(`Error during appointment search: ${err}`);
+            logWithTimestamp(`Error during appointment search:`, err);
             this.initialized = false;
             await this.initialize();
             buttonFoundLocation = await this.getButtonFoundLocation(branchStreetName);
@@ -340,12 +340,12 @@ class WebDriverHelper {
         const resultOfAttempt = await getVerificationCode();
         if (resultOfAttempt !== "No Email") {
           verificationCode = resultOfAttempt;
-          logWithTimestamp(`✅ Verification code: ${verificationCode}`);
+          logWithTimestamp(`✅ Verification code:`, verificationCode);
           break;
         }
         await sleep(intervalBetweenEachFetchingVerificationCodeFromEmail);
       } catch (er) {
-        logWithTimestamp(`FATAL ERROR: ${er}`);
+        logWithTimestamp(`FATAL ERROR:`, er);
       }
     }
 
