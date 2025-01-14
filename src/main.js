@@ -17,5 +17,5 @@ try {
 
   await Solution.findAppointment();
 } catch (e) {
-  console.log(`FATAL ERROR: ${e}`);
+  console.log(`FATAL ERROR:`, e);
 }
