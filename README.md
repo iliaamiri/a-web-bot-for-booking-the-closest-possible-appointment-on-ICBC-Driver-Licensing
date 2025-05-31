@@ -2,6 +2,8 @@
 
 This bot snipes the closest time (based on your logic) for an ICBC Road Test.
 
+The philosophy of this software is that you have this automated tool that refreshes the page and books you an appointment close to when you want because some other person decided to cancel their appointment for whatever reason. Instead of you manually refreshing the page to find that open spot, this script automates that for you. That's all.
+
 ## Pre-requisites and Installations
 1. Basic knowledge of:
     - Working with Command Line interface
