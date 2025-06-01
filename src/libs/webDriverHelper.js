@@ -47,10 +47,10 @@ class WebDriverHelper {
 
   async closeSurveyPopup() {
     try {
-      const noThanksButton = await this.page.$x("//button[contains(text(), 'No thanks')]");
+      const noThanksButton = await this.page.$("xpath=//button[contains(text(), 'No thanks')]");
       if (noThanksButton.length > 0) {
         logWithTimestamp("Survey popup detected. Closing...");
-        await noThanksButton[0].click();
+        await noThanksButton.click();
       }
     } catch (error) {
       logWithTimestamp("Error while trying to close survey popup:", error);
@@ -59,8 +59,8 @@ class WebDriverHelper {
 
   async checkForSoftBan() {
     try {
-      const errorMessageElement = await this.page.$x(
-        "//span[contains(text(), 'Hmm, looks like something went wrong on our end. Please try again later.')]",
+      const errorMessageElement = await this.page.$(
+        "xpath=//span[contains(text(), 'Hmm, looks like something went wrong on our end. Please try again later.')]"
       );
       if (errorMessageElement.length > 0) {
         logWithTimestamp("Soft ban detected. Waiting for 1 hour...");
@@ -87,7 +87,7 @@ class WebDriverHelper {
         const inputLastName = await this.page.$("#mat-input-0");
         const inputDriverLicenseNumber = await this.page.$("#mat-input-1");
         const inputKeyWord = await this.page.$("#mat-input-2");
-        const buttonSignIn = await this.page.$x("//button[contains(text(),'Sign in')]");
+        const buttonSignIn = await this.page.$("xpath=//button[contains(text(),'Sign in')]");
 
         logWithTimestamp("Signing-in...");
 
@@ -100,8 +100,8 @@ class WebDriverHelper {
           throw new Error("Sign-in input fields not found.");
         }
 
-        if (buttonSignIn.length > 0) {
-          await buttonSignIn[0].click();
+        if (buttonSignIn) {
+          await buttonSignIn.click();
         }
 
         logWithTimestamp("Waiting for the panel to load...");
@@ -111,8 +111,8 @@ class WebDriverHelper {
         try {
           logWithTimestamp("Looking for the Book Appointment button...");
 
-          const [buttonBookAppointment] = await this.page.$x(
-            "//span[contains(text(),'Book Appointment') or contains(text(),'New Appointment')]",
+          const buttonBookAppointment = await this.page.$(
+            "xpath=//span[contains(text(),'Book Appointment') or contains(text(),'New Appointment')]"
           );
           if (!buttonBookAppointment) {
             throw new Error("Book Appointment Button not found");
@@ -125,8 +125,8 @@ class WebDriverHelper {
           logWithTimestamp("Looking for the Schedule Appointment button...");
 
           try {
-            const [buttonRescheduleAppointment] = await this.page.$x(
-              "//button[contains(text(),'Reschedule appointment')]",
+            const buttonRescheduleAppointment = await this.page.$(
+              "xpath=//button[contains(text(),'Reschedule appointment')]"
             );
 
             if (buttonRescheduleAppointment) {
@@ -135,7 +135,7 @@ class WebDriverHelper {
 
               await sleep(2000);
 
-              const [buttonRescheduleAppointment_YesToConfirm] = await this.page.$x("//button[contains(text(),'Yes')]");
+              const buttonRescheduleAppointment_YesToConfirm = await this.page.$("xpath=//button[contains(text(),'Yes')]");
 
               if (buttonRescheduleAppointment_YesToConfirm) {
                 await buttonRescheduleAppointment_YesToConfirm.click();
@@ -175,8 +175,8 @@ class WebDriverHelper {
           await sleep(3500);
 
           try {
-            [inputLocationName_SuggestedLocationToConfirm] = await this.page.$x(
-              `//span[contains(text(),'${cityFullName}')]`,
+            inputLocationName_SuggestedLocationToConfirm = await this.page.$(
+              `xpath=//span[contains(text(),'${cityFullName}')]`
             );
             if (!inputLocationName_SuggestedLocationToConfirm) {
               throw new Error("Suggested location not found");
@@ -202,7 +202,7 @@ class WebDriverHelper {
 
         await sleep(2000);
 
-        const [buttonFoundLocation] = await this.page.$x(`//div[contains(text(),'${branchStreetName}')]`);
+        const buttonFoundLocation = await this.page.$(`xpath=//div[contains(text(),'${branchStreetName}')]`);
         if (!buttonFoundLocation) {
           throw new Error("Branch not found");
         }
@@ -300,27 +300,27 @@ class WebDriverHelper {
   async finishTheVerificationProcessAndGetTheAppointment(isAppointmentFoundResult) {
     notifier.notify("DATE FOUND ✅");
 
-    const [buttonScheduleHour] = await this.page.$x(
-      "//div[@class='appointment-listings']//child::mat-button-toggle[1]",
+    const buttonScheduleHour = await this.page.$(
+      "xpath=//div[@class='appointment-listings']//child::mat-button-toggle[1]"
     );
     if (!buttonScheduleHour) throw new Error("Schedule hour button not found.");
     await buttonScheduleHour.click();
     await sleep(2000);
 
-    const [buttonReviewAppointment] = await this.page.$x("//*[contains(text(),'Review Appointment')]");
+    const buttonReviewAppointment = await this.page.$("xpath=//*[contains(text(),'Review Appointment')]");
     if (!buttonReviewAppointment) throw new Error("Review Appointment button not found.");
     await buttonReviewAppointment.click();
     await sleep(2000);
 
-    const [buttonNext] = await this.page.$x(
-      "//div[contains(@class, 'action-button-container')]//button[contains(text(), 'Next')]",
+    const buttonNext = await this.page.$(
+      "xpath=//div[contains(@class, 'action-button-container')]//button[contains(text(), 'Next')]"
     );
     if (!buttonNext) throw new Error("Next button not found.");
     await buttonNext.click();
     await sleep(2000);
 
-    const [buttonSend] = await this.page.$x(
-      "//div[contains(@class, 'otp-action-buttons')]//button[@type='submit' and contains(text(), 'Send')]",
+    const buttonSend = await this.page.$(
+      "xpath=//div[contains(@class, 'otp-action-buttons')]//button[@type='submit' and contains(text(), 'Send')]"
     );
     if (!buttonSend) throw new Error("Send button not found.");
     await buttonSend.click();
