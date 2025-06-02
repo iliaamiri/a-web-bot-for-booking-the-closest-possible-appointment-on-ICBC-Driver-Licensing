@@ -48,7 +48,7 @@ class WebDriverHelper {
   async closeSurveyPopup() {
     try {
       const noThanksButton = await this.page.$("xpath=//button[contains(text(), 'No thanks')]");
-      if (noThanksButton.length > 0) {
+      if (noThanksButton) {
         logWithTimestamp("Survey popup detected. Closing...");
         await noThanksButton.click();
       }
