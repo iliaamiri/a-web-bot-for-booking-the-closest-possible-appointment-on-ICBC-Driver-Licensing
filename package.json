@@ -19,7 +19,7 @@
     "luxon": "^2.5.2",
     "mailparser": "^3.4.0",
     "node-notifier": "^10.0.1",
-    "puppeteer": "^21.6.0",
+    "puppeteer": "^24.9.0",
     "readline-sync": "^1.4.10"
   },
   "devDependencies": {
